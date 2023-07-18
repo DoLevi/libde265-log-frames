@@ -799,7 +799,7 @@ int main(int argc, char** argv)
           const de265_image* img = de265_get_next_picture(ctx);
           if (img) {
             gettimeofday(&ts_log, NULL);
-            printf("decoded %ld: %lus %lums\n", img->pts, ts_log.tv_sec, ts_log.tv_usec);
+            printf("decoded %ld: %lus %luus\n", de265_get_image_PTS(img), ts_log.tv_sec, ts_log.tv_usec);
             if (measure_quality) {
               measure(img);
             }
