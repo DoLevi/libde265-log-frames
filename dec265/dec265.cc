@@ -691,6 +691,7 @@ int main(int argc, char** argv)
   bool stop=false;
 
   struct timeval tv_start;
+  struct timeval ts_log;
   gettimeofday(&tv_start, NULL);
 
   int pos=0;
@@ -699,6 +700,8 @@ int main(int argc, char** argv)
     {
       //tid = (framecnt/1000) & 1;
       //de265_set_limit_TID(ctx, tid);
+      gettimeofday(&ts_log, NULL);
+      printf("decoding %d: %lus %lums\n", pos, ts_log.tv_sec, ts_log.tv_usec);
 
       if (nal_input) {
         uint8_t len[4];
@@ -775,6 +778,8 @@ int main(int argc, char** argv)
 
           const de265_image* img = de265_get_next_picture(ctx);
           if (img) {
+            gettimeofday(&ts_log, NULL);
+            printf("decoded %ld: %lus %lums\n", img->pts, ts_log.tv_sec, ts_log.tv_usec);
             if (measure_quality) {
               measure(img);
             }
