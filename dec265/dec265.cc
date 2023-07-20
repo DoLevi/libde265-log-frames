@@ -710,7 +710,7 @@ int main(int argc, char** argv)
       //tid = (framecnt/1000) & 1;
       //de265_set_limit_TID(ctx, tid);
       gettimeofday(&ts_log, NULL);
-      printf("decoding %d: %lus %lums\n", pos, ts_log.tv_sec, ts_log.tv_usec);
+      printf("decoding %d: %lus %luus\n", pos, ts_log.tv_sec, ts_log.tv_usec);
 
       if (nal_input) {
         uint8_t len[4];
